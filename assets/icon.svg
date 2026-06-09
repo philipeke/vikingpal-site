@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0cc70"/>
+      <stop offset="50%" stop-color="#c8a44a"/>
+      <stop offset="100%" stop-color="#e07830"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1428"/>
+      <stop offset="100%" stop-color="#0d0920"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="200" height="200" rx="40" fill="url(#bgGrad)"/>
+  <!-- Shield silhouette -->
+  <path d="M100 22 L168 52 L168 108 Q168 148 100 178 Q32 148 32 108 L32 52 Z"
+        fill="rgba(200,164,74,0.08)" stroke="url(#shieldGrad)" stroke-width="2.5"/>
+  <!-- Outer ring accent -->
+  <path d="M100 28 L162 56 L162 108 Q162 144 100 172 Q38 144 38 108 L38 56 Z"
+        fill="none" stroke="rgba(200,164,74,0.20)" stroke-width="1"/>
+  <!-- Cross center -->
+  <rect x="94" y="52" width="12" height="96" rx="2" fill="url(#shieldGrad)" filter="url(#glow)"/>
+  <rect x="60" y="88" width="80" height="12" rx="2" fill="url(#shieldGrad)" filter="url(#glow)"/>
+  <!-- Cross ornament - top -->
+  <path d="M100 46 L106 58 L100 56 L94 58 Z" fill="url(#shieldGrad)"/>
+  <!-- Rune marks on shield arms -->
+  <line x1="76" y1="76" x2="76" y2="88" stroke="rgba(200,164,74,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="124" y1="76" x2="124" y2="88" stroke="rgba(200,164,74,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="76" y1="112" x2="76" y2="124" stroke="rgba(200,164,74,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="124" y1="112" x2="124" y2="124" stroke="rgba(200,164,74,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Corner rune ticks -->
+  <line x1="56" y1="72" x2="60" y2="68" stroke="rgba(200,164,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="144" y1="72" x2="140" y2="68" stroke="rgba(200,164,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

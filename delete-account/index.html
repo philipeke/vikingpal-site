@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Account — VikingPal</title>
+  <meta name="description" content="How to permanently delete your VikingPal account and all associated data. Two easy methods — in-app or by email.">
+  <meta name="theme-color" content="#07050e">
+  <meta name="robots" content="index, follow">
+  <meta name="base-url" content="..">
+  <link rel="canonical" href="https://vikingpal.oakdev.app/delete-account">
+  <meta property="og:title" content="Delete Account — VikingPal">
+  <meta property="og:description" content="Permanently delete your VikingPal account and all your data in seconds — directly from the app or by email.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/legal.css">
+  <style>
+    /* ── Delete Account page ─────────────────────────────── */
+    .delete-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .method-card {
+      background: rgba(15, 11, 26, 0.75);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      backdrop-filter: blur(14px);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .method-card:hover { border-color: var(--color-border-mid); }
+    .method-card--primary  { border-color: rgba(224,120,48,0.25); }
+    .method-card--primary:hover { border-color: rgba(224,120,48,0.50); }
+
+    .method-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.75rem;
+      border-radius: 3px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      width: fit-content;
+      font-family: var(--font-heading);
+    }
+    .method-card--primary .method-card__badge {
+      background: rgba(224,120,48,0.10);
+      border: 1px solid rgba(224,120,48,0.28);
+      color: var(--color-ember-bright);
+    }
+    .method-card--secondary .method-card__badge {
+      background: rgba(200,164,74,0.08);
+      border: 1px solid rgba(200,164,74,0.22);
+      color: var(--color-gold);
+    }
+    .method-card__icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .method-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+    .method-card__steps {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+      flex: 1;
+    }
+    .method-card__steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+    .method-card__steps li:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: rgba(224,120,48,0.10);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--color-ember-bright);
+      margin-top: 0.1rem;
+      font-family: var(--font-heading);
+      flex-shrink: 0;
+    }
+    .method-card--secondary .step-num {
+      background: rgba(200,164,74,0.10);
+      color: var(--color-gold);
+    }
+    .method-card__cta {
+      display: block;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      font-family: var(--font-heading);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .method-card--primary .method-card__cta {
+      background: rgba(224,120,48,0.10);
+      border: 1px solid rgba(224,120,48,0.28);
+      color: var(--color-ember-bright);
+    }
+    .method-card--primary .method-card__cta:hover { background: rgba(224,120,48,0.20); }
+    .method-card--secondary .method-card__cta {
+      background: rgba(200,164,74,0.08);
+      border: 1px solid rgba(200,164,74,0.22);
+      color: var(--color-gold);
+    }
+    .method-card--secondary .method-card__cta:hover { background: rgba(200,164,74,0.16); }
+
+    .warning-box {
+      background: rgba(200,64,64,0.06);
+      border: 1px solid rgba(200,64,64,0.20);
+      border-left: 3px solid var(--color-red-bright);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+    .warning-box strong { color: var(--color-red-light); }
+
+    .data-list {
+      background: rgba(15, 11, 26, 0.55);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+    .data-list h3 {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      color: var(--color-text);
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .data-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+    .data-list ul li {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .data-list ul li::before {
+      content: '✓';
+      color: var(--color-gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .contact-alt {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .contact-alt p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .contact-alt a { color: var(--color-ember-bright); text-decoration: underline; }
+    .methods-heading {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .methods-sub {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+    }
+    @media (max-width: 680px) {
+      .method-grid { grid-template-columns: 1fr; }
+      .data-list ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas class="ember-canvas" id="emberCanvas" aria-hidden="true"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav class="nav nav--scrolled" id="nav" role="navigation" aria-label="Main">
+    <div class="nav__container">
+      <a href="/" class="nav__logo" aria-label="VikingPal — Home">
+        <img src="../assets/icon.svg" alt="VikingPal" class="nav__logo-img">
+        <span class="nav__logo-name">Viking<span>Pal</span></span>
+      </a>
+      <div class="nav__links" id="navLinks">
+        <a href="/#about"    class="nav__link" data-i18n="nav.about">About</a>
+        <a href="/#features" class="nav__link" data-i18n="nav.features">Features</a>
+        <a href="/#plans"    class="nav__link" data-i18n="nav.plans">Plans</a>
+        <a href="/support"   class="nav__link" data-i18n="nav.support">Support</a>
+      </div>
+      <div class="nav__right">
+        <div class="nav__lang" id="langSwitcher">
+          <button class="nav__lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-flag" id="langFlag">🇬🇧</span>
+            <span class="lang-code" id="langCode">EN</span>
+            <span class="lang-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="nav__lang-dropdown" id="langDropdown" role="listbox" aria-label="Select language">
+            <button class="nav__lang-option active" data-lang="en" role="option" aria-selected="true">
+              <span class="opt-flag">🇬🇧</span><span class="opt-name">English</span>
+            </button>
+          </div>
+        </div>
+        <a href="/#download" class="btn btn--gold nav__cta" data-i18n="nav.download">Download</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero" role="banner">
+    <div class="page-hero__inner">
+      <div class="page-hero__badge" data-i18n="delete.badge">Account</div>
+      <h1 class="page-hero__title" data-i18n="delete.title">Delete Your Account</h1>
+      <p class="page-hero__subtitle" data-i18n="delete.subtitle">
+        You have the right to permanently delete your account and all associated data at any time — no questions asked.
+      </p>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="delete-wrap">
+
+      <!-- Warning -->
+      <div class="warning-box">
+        <strong data-i18n="delete.warning_title">This action is permanent and cannot be undone.</strong>
+        <span data-i18n="delete.warning_body"> Deleting your account will permanently erase all your data, your Premium status, your prayer journal, and your reflection history. There is no grace period — once confirmed in the app, deletion begins immediately.</span>
+      </div>
+
+      <!-- Method heading -->
+      <h2 class="methods-heading" data-i18n="delete.methods_title">Choose How to Delete</h2>
+      <p class="methods-sub" data-i18n="delete.methods_sub">The in-app method is the fastest and easiest.</p>
+
+      <div class="method-grid">
+
+        <!-- In-app -->
+        <div class="method-card method-card--primary">
+          <div class="method-card__badge" data-i18n="delete.method1_badge">⚡ Recommended</div>
+          <div class="method-card__icon" aria-hidden="true">📱</div>
+          <div class="method-card__title" data-i18n="delete.method1_title">Delete in the App</div>
+          <ol class="method-card__steps">
+            <li><span class="step-num">1</span><span data-i18n="delete.step1">Open the VikingPal app on your device.</span></li>
+            <li><span class="step-num">2</span><span data-i18n="delete.step2">Go to <strong>Settings</strong> (profile or menu area).</span></li>
+            <li><span class="step-num">3</span><span data-i18n="delete.step3">Scroll to the bottom of Settings.</span></li>
+            <li><span class="step-num">4</span><span data-i18n="delete.step4">Tap <strong>Delete Account</strong>.</span></li>
+            <li><span class="step-num">5</span><span data-i18n="delete.step5">Confirm the deletion. Your account and all data are permanently erased.</span></li>
+          </ol>
+          <a href="/#download" class="method-card__cta" data-i18n="delete.method1_cta">Open VikingPal</a>
+        </div>
+
+        <!-- Email -->
+        <div class="method-card method-card--secondary">
+          <div class="method-card__badge" data-i18n="delete.method2_badge">✉ By Email</div>
+          <div class="method-card__icon" aria-hidden="true">📧</div>
+          <div class="method-card__title" data-i18n="delete.method2_title">Request via Email</div>
+          <ol class="method-card__steps">
+            <li><span class="step-num">1</span><span data-i18n="delete.estep1">Send an email to <strong>hello@oakdev.app</strong>.</span></li>
+            <li><span class="step-num">2</span><span data-i18n="delete.estep2">Use the subject: <strong>"Delete Account"</strong>.</span></li>
+            <li><span class="step-num">3</span><span data-i18n="delete.estep3">Include the email address linked to your VikingPal account.</span></li>
+            <li><span class="step-num">4</span><span data-i18n="delete.estep4">We will process your request and confirm deletion within <strong>30 days</strong>.</span></li>
+          </ol>
+          <a href="mailto:hello@oakdev.app?subject=Delete%20Account" class="method-card__cta" data-i18n="delete.method2_cta">Email Us</a>
+        </div>
+
+      </div>
+
+      <!-- What gets deleted -->
+      <div class="data-list">
+        <h3 data-i18n="delete.data_title">What Gets Deleted</h3>
+        <ul>
+          <li data-i18n="delete.data1">Your account and login credentials</li>
+          <li data-i18n="delete.data2">Your email address</li>
+          <li data-i18n="delete.data3">Your Premium subscription status</li>
+          <li data-i18n="delete.data4">Your prayer journal and prayer history</li>
+          <li data-i18n="delete.data5">Your reflection history and notes</li>
+          <li data-i18n="delete.data6">Your app settings and preferences</li>
+        </ul>
+      </div>
+
+      <!-- GDPR note -->
+      <div class="legal-highlight legal-highlight--gold">
+        <strong data-i18n="delete.gdpr_title">Your GDPR rights.</strong>
+        <span data-i18n="delete.gdpr_body"> As a user, you have the right to erasure ("right to be forgotten") under Article 17 of the GDPR. Deleting your account fully satisfies this right. If you have any questions about how your data is handled, please read our <a href="/privacy" style="color: inherit; text-decoration: underline;">Privacy Policy</a> or contact us at <a href="mailto:hello@oakdev.app" style="color: inherit; text-decoration: underline;">hello@oakdev.app</a>.</span>
+      </div>
+
+      <!-- Contact alt -->
+      <div class="contact-alt">
+        <p data-i18n="delete.questions">Have questions or need help? We are here.</p>
+        <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>
+        &nbsp;·&nbsp;
+        <a href="/support" data-i18n="delete.support_link">Support Center</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/icon.svg" alt="VikingPal" class="footer__logo">
+          <div class="footer__brand-name">VikingPal</div>
+          <p class="footer__tagline" data-i18n="footer.tagline">Walk with Christ. The way of the Northern warrior.</p>
+          <span class="footer__rune" aria-hidden="true">᛭ ᛭ ᛭</span>
+        </div>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <div class="footer__col">
+            <span class="footer__col-title" data-i18n="footer.col1">App</span>
+            <a href="/#about"    data-i18n="footer.about">About VikingPal</a>
+            <a href="/#features" data-i18n="footer.features">Features</a>
+            <a href="/#plans"    data-i18n="footer.plans">Plans</a>
+            <a href="/#download" data-i18n="footer.dl">Download</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-title" data-i18n="footer.col2">Legal</span>
+            <a href="/privacy"        data-i18n="footer.privacy">Privacy Policy</a>
+            <a href="/terms"          data-i18n="footer.terms">Terms of Service</a>
+            <a href="/delete-account" data-i18n="footer.delete">Delete Account</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-title" data-i18n="footer.col3">Help</span>
+            <a href="/support"         data-i18n="footer.support_center">Support Center</a>
+            <a href="/support#contact" data-i18n="footer.contact">Contact Us</a>
+            <a href="mailto:hello@oakdev.app" class="footer__email">hello@oakdev.app</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="copyrightYear">2026</span> OakDev &amp; AI AB. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="/privacy"        data-i18n="footer.privacy">Privacy</a>
+          <a href="/terms"          data-i18n="footer.terms">Terms</a>
+          <a href="/support"        data-i18n="footer.support_center">Support</a>
+          <a href="/delete-account" data-i18n="footer.delete">Delete Account</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/i18n.js"></script>
+</body>
+</html>
