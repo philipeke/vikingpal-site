@@ -1,5 +1,5 @@
 /* ============================================================
-   VIKINGPAL — Daily Christian Companion
+   VIKINGPAL — Norse Guidance App
    Main JavaScript · OakDev & AI AB © 2026
    ============================================================ */
 'use strict';
